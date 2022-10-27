@@ -1,5 +1,5 @@
-require "../moves/move.rb"
-require "../types/type_hierarchy.rb"
+require_relative "../moves/move.rb"
+require_relative "../types/type_hierarchy.rb"
 
 class Pokemon
 
