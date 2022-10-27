@@ -1,30 +1,32 @@
+require "../moves/move.rb"
+require "../types/type_hierarchy.rb"
+
 class Pokemon
 
-    def initialize(name, level)
+    def initialize(name, type, level)
         @name = name
         @level = level
         @hp = 100 * @level
-        @move_set = Hash.new(0)
+        @move_set = Array.new
     end
 
 
-    def add_move(move_name, attack_val)
+    def add_move(move_name, type, damage)
         if @move_set.size == 4
             raise 'delete move first'
-        elsif attack_val > @level * 10.5
+        elsif damage > @level * 10.5
             raise 'move level too high'
         else
-            @move_set[move_name] = attack_val
+            @move_set << Move.new(move_name, type, damage)
             return "#{@name} has successfully learned #{move_name}!"
         end
     end
 
-    def make_move(opponent)
+    def make_move
         p 'make a move'
         p move_set
         move = gets.chomp
         attack = @move_set[move]
-        opponent.attacked(attack)
     end
 
     def attacked(attack_val)
